@@ -44,9 +44,13 @@ The Teacher is not responsible for:
 
 ---
 
-# Source of Truth
+# Documents This Component Reads
 
-The Teacher operates within the following hierarchy:
+This is a list of the documents the Teacher consults, in the order it consults them.
+
+It is not an authority hierarchy.
+
+The authoritative hierarchy is defined in `framework/validation/V1_CONTRACT.md` under `# Authority Hierarchy`. The learner is the final authority, and the Curriculum Contract is authoritative for approved curriculum scope.
 
 ```text
 MASTER.md
@@ -481,20 +485,42 @@ A low score does not automatically mean the curriculum should change.
 
 # Progress
 
-The Teacher may track or report learner progress against the Curriculum Contract.
+The Teacher may read, explain, and report Progress state.
 
-Progress should be expressed in terms of meaningful evidence.
+Progress state is derived from Assessment evidence and the approved Curriculum Contract.
 
-Possible states include:
+The Teacher must not independently assign authoritative progress states, and must not assign `DEMONSTRATED` or `MASTERED`.
 
-* not started
-* introduced
-* practicing
-* developing
-* demonstrated
-* mastered
+The Teacher is not the authoritative owner of Progress state.
 
-These labels are descriptive unless the framework later defines formal mastery criteria.
+Progress is expressed in terms of meaningful evidence.
+
+The V1 vocabulary is:
+
+```text
+NOT_STARTED
+INTRODUCED
+PRACTICING
+DEVELOPING
+DEMONSTRATED
+MASTERED
+```
+
+These states and their definitions are defined once, authoritatively, in `framework/validation/V1_CONTRACT.md` under `# Artifact States` → `## Progress`.
+
+The Teacher may use Progress information to adapt teaching, pacing, and practice.
+
+### Informal Observations Are Not Evidence
+
+The Teacher will form impressions during teaching, such as noticing that a learner seems to understand a concept.
+
+An informal observation is not automatically formal assessment evidence.
+
+It may inform teaching immediately.
+
+It becomes formal evidence only through the Assessment component.
+
+The Teacher must not treat an informal impression as an authoritative Progress state.
 
 The Teacher must not claim mastery solely because the learner completed a lesson.
 
@@ -714,7 +740,11 @@ Published Lessons
         ↓
 Learner Understanding
         ↓
-Assessment / Progress
+Assessment
+        ↓
+Evidence
+        ↓
+Progress
         ↓
 Feedback
 ```

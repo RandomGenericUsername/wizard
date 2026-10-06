@@ -43,6 +43,8 @@ Teaching
     ↓
 Assessment
     ↓
+Evidence
+    ↓
 Progress
     ↓
 Revision
@@ -69,10 +71,29 @@ Lesson Author
 Published Lessons
 Teacher
 Assessment
+Evidence
 Progress
 ```
 
 These components are intentionally limited.
+
+Not every component is an agent. `Curriculum Contract` and `Published Lessons` are artifacts. `Evidence` and `Progress` are derived outputs and states rather than autonomous roles.
+
+`Evidence` is the learning evidence produced and recorded by Assessment. It is a derived output, not an agent, and holds no authority of its own.
+
+`Progress` is an evidence-derived state and reporting function. It is not a separate agent and holds no independent authority.
+
+The canonical V1 relationship between these three is:
+
+```text
+Assessment → Evidence → Progress
+```
+
+Where:
+
+* **Assessment** evaluates and produces evidence.
+* **Evidence** is learning evidence.
+* **Progress** is learner state derived from that evidence.
 
 V1 does not introduce additional specialized agents unless a concrete requirement demonstrates that an existing role cannot reasonably perform the required responsibility.
 
@@ -134,6 +155,8 @@ Lessons
 Teacher
    ↓
 Assessment
+   ↓
+Evidence
    ↓
 Progress
 ```
@@ -307,13 +330,78 @@ Does not define curriculum.
 
 ---
 
+## Evidence
+
+Evidence is the learning evidence produced and recorded by Assessment about the learner's achievement.
+
+Evidence is a derived output, not an agent.
+
+Evidence does not make decisions and holds no authority.
+
+Evidence is:
+
+* produced by Assessment
+* recorded as historical observation
+* interpreted by Progress against the approved Curriculum Contract
+* not itself a curriculum requirement
+* not itself a mastery decision
+
+The relationship is:
+
+```text
+Assessment evaluates → Evidence records → Progress derives
+```
+
+Evidence must be sufficient to support a meaningful conclusion about the capability it addresses.
+
+Evidence does not define what the learner must learn. Requirements come from the Curriculum Contract.
+
+Progress may not invent mastery criteria. Where the Curriculum Contract or the applicable assessment criteria define them, Progress applies them to the available evidence.
+
+---
+
 ## Progress
 
 Represents the learner's demonstrated state relative to curriculum objectives.
 
-Progress is evidence-based.
+Progress is an evidence-derived state and reporting function.
 
-Progress does not change curriculum scope.
+It is not an autonomous agent, and it does not hold independent authority.
+
+Progress is derived:
+
+```text
+Curriculum Contract
+        ↓
+Objectives
+        ↓
+Teacher / Lessons
+        ↓
+Assessment
+        ↓
+Evidence
+        ↓
+Progress
+```
+
+Assessment owns the evidence.
+
+Progress interprets and reports that evidence against the approved Curriculum Contract.
+
+Progress does not:
+
+* define curriculum;
+* define assessment criteria;
+* invent mastery criteria;
+* create learning requirements;
+* approve curriculum;
+* replace Assessment;
+* replace the Teacher;
+* modify lessons;
+* alter or discard recorded evidence;
+* change curriculum scope.
+
+Progress is evidence-based.
 
 ---
 
@@ -330,7 +418,13 @@ Approved Curriculum Contract
        ↓
 Published Lessons
        ↓
-Teaching / Assessment
+Teaching
+       ↓
+Assessment
+       ↓
+Evidence
+       ↓
+Progress
 ```
 
 More precisely:
@@ -358,6 +452,18 @@ Adapts how the material is taught.
 ### Assessment
 
 Determines evidence of achievement.
+
+### Evidence
+
+Records what Assessment determined.
+
+It is a derived output, not an authority.
+
+### Progress
+
+Reports learner state derived from that evidence.
+
+Progress sits below Assessment and Evidence in the hierarchy. It reports evidence; it does not create it, define it, or turn it into a curriculum requirement.
 
 No downstream artifact may override an upstream authority without an explicit revision process.
 
@@ -461,6 +567,51 @@ SUPERSEDED
 ```
 
 Published lessons are stable learning artifacts.
+
+---
+
+## Progress
+
+```text
+NOT_STARTED
+INTRODUCED
+PRACTICING
+DEVELOPING
+DEMONSTRATED
+MASTERED
+```
+
+These are the authoritative V1 progress states.
+
+### NOT_STARTED
+
+No meaningful learning activity or evidence has yet been recorded for the objective.
+
+### INTRODUCED
+
+The learner has been exposed to the objective.
+
+### PRACTICING
+
+The learner is actively practicing the objective but has not yet demonstrated reliable capability.
+
+### DEVELOPING
+
+Evidence shows meaningful progress, but capability is not yet consistently demonstrated.
+
+### DEMONSTRATED
+
+The learner has provided sufficient evidence of the expected capability.
+
+### MASTERED
+
+The learner has demonstrated sustained and reliable capability according to the applicable curriculum and assessment criteria.
+
+Progress states are derived from Assessment evidence.
+
+The existence of a lesson, or the completion of a lesson, must not automatically produce a progress state or a mastery state.
+
+Progress must not invent mastery criteria. Where the Curriculum Contract or the applicable assessment criteria define them, Progress applies them.
 
 ---
 
@@ -695,6 +846,10 @@ Assessment
 
 Assessment
         ↓
+Evidence
+
+Evidence
+        ↓
 Progress
 ```
 
@@ -755,25 +910,97 @@ The Curriculum Contract remains unchanged unless the problem is actually curricu
 ## Curriculum Revision
 
 ```text
-Current Curriculum Contract
+Existing Curriculum Contract
       ↓
 Change Proposal
       ↓
 Impact Analysis
       ↓
-Expert Review when necessary
+Curriculum Revision
+      ↓
+Domain Expert Review
       ↓
 Curriculum Review
       ↓
 Human Approval
       ↓
-New Curriculum Contract
+New Curriculum Contract Version
+      ↓
+Supersedes the previous Contract version
 ```
+
+The Curriculum Architect owns the creation of the curriculum revision.
+
+The Reviewer evaluates and synthesizes the revised curriculum.
+
+The Reviewer does not author the Curriculum Architect's proposal, and does not independently decide whether impact analysis is necessary for a curriculum change.
+
+Responsibility during curriculum revision:
+
+```text
+Architect  → creates the revision
+Expert     → critiques the revision
+Reviewer   → evaluates and synthesizes the revision
+Human      → approves the revision
+```
+
+The new version supersedes the previous version, which remains identifiable as historical context.
 
 ---
 
-## Goal Revision
+## Learning Specification Revision
 
-```tex
+```text
+Existing Learning Specification
+      ↓
+Learning Specification Change
+      ↓
+Impact Analysis
+      ↓
+Revised Learning Specification
+      ↓
+Curriculum Impact Evaluation
+      ↓
+Curriculum Revision when necessary
+      ↓
+Human Approval where the curriculum changes
 ```
+
+### Why this revision is different
+
+Changing the Learning Specification may invalidate or change the intended destination.
+
+It can therefore require substantial curriculum redesign.
+
+Changing the Curriculum Contract requires the curriculum revision process and explicit human approval.
+
+### The Learning Specification is not the Curriculum Contract
+
+The Learning Specification represents learner intent.
+
+It is not an authoritative curriculum artifact and it does not become one.
+
+The Learning Specification is the learner's own statement of intent, so the learner decides changes to it.
+
+There is no separate AI approval system for specifications, and no AI component may revise the learner's stated intent on their behalf.
+
+### Relationship to curriculum approval
+
+The only approval that changes what the learner is required to learn is approval of a Curriculum Contract.
+
+Therefore:
+
+```text
+Specification change
+        ↓
+may or may not affect the curriculum
+        ↓
+if it affects the curriculum
+        ↓
+the existing curriculum revision process applies
+        ↓
+including explicit human approval of the new Contract version
+```
+
+A change to the Learning Specification never silently changes the Curriculum Contract.
 

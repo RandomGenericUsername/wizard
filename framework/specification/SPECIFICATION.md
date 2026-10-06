@@ -210,9 +210,27 @@ Examples:
 
 > I want to learn web development, but I am not interested in mobile development.
 
-Explicit exclusions should be respected unless the system identifies a strong dependency that makes them relevant.
+Explicit exclusions are learner constraints.
 
-If an exclusion conflicts with an essential prerequisite, the conflict should be surfaced to the learner.
+They must be preserved by downstream components unless the learner explicitly decides to change them.
+
+AI may identify that an exclusion conflicts with an essential prerequisite, explain why the prerequisite matters, and recommend a decision.
+
+AI must not override the exclusion itself.
+
+If an exclusion conflicts with an essential prerequisite, the conflict must be surfaced to the learner:
+
+```text
+AI identifies conflict
+        ↓
+AI explains conflict
+        ↓
+AI recommends options
+        ↓
+Learner decides
+```
+
+AI must never resolve an exclusion conflict by overriding the exclusion.
 
 ---
 

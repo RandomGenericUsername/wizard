@@ -236,16 +236,26 @@ Impact Analysis
           ↓
 Curriculum Revision
           ↓
-Expert Review (when necessary)
+Domain Expert Review
           ↓
 Curriculum Review
           ↓
 Human Approval
           ↓
 New Curriculum Contract Version
+          ↓
+Supersedes the previous version
 ```
 
-The original approved version should remain recoverable.
+The Curriculum Architect owns the creation of the curriculum revision.
+
+The Domain Expert critiques it.
+
+The Curriculum Reviewer evaluates and synthesizes it.
+
+The learner approves it.
+
+The new version supersedes the previous version, and the previous version remains recoverable as historical context.
 
 ---
 

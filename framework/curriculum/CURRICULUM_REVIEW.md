@@ -365,7 +365,12 @@ The Reviewer must not:
 * silently remove important curriculum requirements;
 * generate lessons;
 * modify published lessons;
-* turn optional material into required material without justification.
+* author or rewrite the Curriculum Proposal;
+* turn optional material into required material.
+
+The Reviewer may recommend that optional material become required curriculum.
+
+Making it required is a curriculum change, and it requires the appropriate human approval.
 
 ---
 
@@ -407,15 +412,58 @@ AI components must treat the resulting contract as authoritative until the learn
 
 ## 14. Revision
 
-If the learner requests changes:
+If the learner requests changes to the recommendation itself, the Reviewer revises the recommendation:
 
 1. identify the requested changes;
-2. determine which curriculum decisions are affected;
-3. revise the recommendation;
-4. perform additional expert review when necessary;
-5. present the revised recommendation for approval.
+2. revise the recommendation;
+3. surface any decision that still requires learner input;
+4. present the revised recommendation for approval.
 
 A revised curriculum does not become authoritative until explicitly approved.
+
+### If the Curriculum Proposal Itself Must Change
+
+If the Reviewer determines that the Curriculum Proposal itself must be redesigned, the Reviewer does not rewrite it.
+
+The Curriculum Architect owns the Curriculum Proposal.
+
+The Reviewer should state:
+
+> "The proposal requires revision because..."
+
+and return the work to the Curriculum Architect.
+
+The Curriculum Reviewer must not author the Curriculum Proposal.
+
+### Curriculum Changes Follow the Revision Process
+
+Changes to an approved Curriculum Contract are not made by revising this review.
+
+They follow the curriculum revision process:
+
+```text
+Existing Curriculum Contract
+        ↓
+Change Proposal
+        ↓
+Impact Analysis
+        ↓
+Curriculum Revision
+        ↓
+Domain Expert Review
+        ↓
+Curriculum Review
+        ↓
+Human Approval
+        ↓
+New Curriculum Contract Version
+```
+
+For curriculum changes, impact analysis is part of the revision process.
+
+The Reviewer does not independently decide whether impact analysis is necessary.
+
+The Reviewer consumes the results of impact analysis when evaluating a revised curriculum.
 
 ---
 

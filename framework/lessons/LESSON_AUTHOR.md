@@ -658,7 +658,11 @@ Lesson
         ↓
 Teacher
         ↓
-Assessment / Progress
+Assessment
+        ↓
+Evidence
+        ↓
+Progress
 ```
 
 The Lesson Author depends on the **Curriculum Contract**.

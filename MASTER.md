@@ -261,40 +261,53 @@ The Domain Expert must challenge the proposed curriculum rather than simply vali
 The v1 system consists of the following primary components:
 
 ```text
-                    Learner
-                       │
-                       ▼
-             Learning Specification
-                       │
-                       ▼
-              Curriculum Architect
-                       │
-                       ▼
-                 Domain Expert
-                 (adversarial)
-                       │
-                       ▼
-              Curriculum Reviewer
-                       │
-                       ▼
-                Human Approval
-                       │
-                       ▼
-                 Lesson Author
-                       │
-                       ▼
-              Approved Lessons
-                       │
-                       ▼
-                    Teacher
-                       │
-                       ▼
-             Assessment / Progress
+                     Learner
+                        │
+                        ▼
+              Learning Specification
+                        │
+                        ▼
+               Curriculum Architect
+                        │
+                        ▼
+                  Domain Expert
+                  (adversarial)
+                        │
+                        ▼
+               Curriculum Reviewer
+                        │
+                        ▼
+                 Human Approval
+                        │
+                        ▼
+               Curriculum Contract
+                        │
+                        ▼
+                  Lesson Author
+                        │
+                        ▼
+               Published Lessons
+                        │
+                        ▼
+                     Teacher
+                        │
+                        ▼
+                   Assessment
+                        │
+                        ▼
+                    Evidence
+                        │
+                        ▼
+                    Progress
 ```
 
 Each component has a defined responsibility.
 
 No component should silently assume the responsibilities of another component.
+
+`Curriculum Contract` and `Published Lessons` are artifacts. `Evidence` and `Progress` are derived outputs and states.
+
+`Evidence` is the learning evidence produced by Assessment. `Progress` is learner state derived from that evidence. Neither is an additional autonomous role, and the canonical relationship between them is `Assessment → Evidence → Progress`.
 
 ---
 
@@ -369,9 +382,49 @@ The Reviewer may:
 * Reject Expert criticism when it conflicts with the learner's scope.
 * Request curriculum changes.
 * Identify unresolved issues.
-* Produce a revised curriculum proposal.
+* Produce a revised recommendation.
+* Identify decisions that require learner approval.
 
 The Reviewer does not have final authority.
+
+### The Reviewer does not author the Curriculum Proposal
+
+The Curriculum Proposal is the Curriculum Architect's artifact.
+
+The Reviewer may evaluate it, critique it, reconcile competing findings, and produce a revised **recommendation**.
+
+The Reviewer must not:
+
+* author or rewrite the Curriculum Proposal
+* silently become the Curriculum Architect
+* bypass the Domain Expert stage by producing a replacement proposal
+* treat its own revision as a new proposal that skips adversarial review
+
+If the Reviewer determines that the proposal itself must be redesigned, that is a signal to return the work to the Architect.
+
+The Reviewer may state:
+
+> "The proposal requires revision because..."
+
+It must then return the work to the Curriculum Architect, who produces a revised proposal that re-enters Domain Expert review.
+
+The responsibility boundary remains:
+
+```text
+Curriculum Architect
+        ↓
+Curriculum Proposal
+        ↓
+Domain Expert
+        ↓
+Expert Critique
+        ↓
+Curriculum Reviewer
+        ↓
+Curriculum Recommendation
+        ↓
+Human Approval
+```
 
 ---
 
@@ -424,9 +477,9 @@ The Teacher must not silently modify the authoritative curriculum.
 
 ---
 
-## 8.8 Assessment / Progress
+## 8.8 Assessment
 
-Responsible for determining and recording evidence of learning.
+Responsible for producing evidence of learning.
 
 Assessment may include:
 
@@ -437,7 +490,26 @@ Assessment may include:
 * Demonstrations
 * Other appropriate evidence
 
+Assessment does not define curriculum.
+
+---
+
+## 8.9 Progress
+
+Responsible for representing the learner's state relative to curriculum objectives, derived from assessment evidence.
+
 Progress represents the learner's demonstrated state rather than merely the number of lessons viewed.
+
+Progress is an evidence-derived state and reporting function.
+
+It is not an additional agent, and it holds no independent authority.
+
+Progress does not define curriculum, define assessment criteria, invent mastery criteria, or create learning requirements.
+
+```text
+Assessment → Evidence
+Progress   → Derived state and report
+```
 
 ---
 
@@ -464,6 +536,9 @@ CURRICULUM REVIEW
 HUMAN APPROVAL
   │
   ▼
+CURRICULUM CONTRACT
+  │
+  ▼
 LESSON GENERATION
   │
   ▼
@@ -474,6 +549,9 @@ TEACHING
   │
   ▼
 ASSESSMENT
+  │
+  ▼
+EVIDENCE
   │
   ▼
 PROGRESS
@@ -589,7 +667,11 @@ May not force those concepts into the curriculum.
 
 May reconcile Architect and Expert feedback.
 
+May produce a revised recommendation.
+
 May not override the learner's final approval.
+
+May not author the Curriculum Proposal.
 
 ### Lesson Author
 
@@ -762,9 +844,12 @@ Learning Specification
 → Domain Expert
 → Curriculum Reviewer
 → Human Approval
+→ Curriculum Contract
 → Lesson Author
 → Teacher
-→ Assessment / Progress
+→ Assessment
+→ Evidence
+→ Progress
 ```
 
 ### Core properties

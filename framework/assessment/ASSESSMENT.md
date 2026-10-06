@@ -39,9 +39,40 @@ Assessment is not responsible for:
 
 ---
 
-# Source of Truth
+# Evidence and Progress
 
-Assessment operates within the following hierarchy:
+Assessment owns the evidence.
+
+Progress is derived from that evidence.
+
+```text
+Assessment → Evidence
+Progress   → Derived state and report
+```
+
+Progress represents the learner's state against the approved Curriculum Contract.
+
+Progress is an evidence-derived state and reporting function, not an additional agent or a second assessment authority.
+
+Therefore:
+
+```text
+Progress ≠ Curriculum
+Progress ≠ Assessment Criteria
+Progress ≠ Mastery Criteria (unless the Curriculum Contract defines them)
+```
+
+Producing evidence does not make Assessment a curriculum designer. A progress state never becomes a curriculum requirement.
+
+---
+
+# Documents This Component Reads
+
+This is a list of the documents Assessment consults, in the order it consults them.
+
+It is not an authority hierarchy.
+
+The authoritative hierarchy is defined in `framework/validation/V1_CONTRACT.md` under `# Authority Hierarchy`. The learner is the final authority, and the Curriculum Contract is authoritative for approved curriculum scope.
 
 ```text
 MASTER.md
@@ -312,6 +343,10 @@ The Teacher should identify the smallest useful intervention.
 
 # Mastery
 
+This section describes the strength and quality of the evidence used to evaluate learning.
+
+It is an assessment interpretation distinction, not a Progress vocabulary.
+
 The framework should distinguish between:
 
 * exposure
@@ -319,6 +354,23 @@ The framework should distinguish between:
 * demonstrated understanding
 * demonstrated capability
 * mastery
+
+These terms describe increasing strength of evidence. They do not define Progress states, and they must not be used as a substitute for the Progress vocabulary.
+
+The only Progress vocabulary is:
+
+```text
+NOT_STARTED
+INTRODUCED
+PRACTICING
+DEVELOPING
+DEMONSTRATED
+MASTERED
+```
+
+defined in `framework/validation/V1_CONTRACT.md`.
+
+A curriculum or assessment may interpret these evidence strengths when applying a Progress state, but it must not introduce additional states or replace the canonical vocabulary.
 
 Completing a lesson does not automatically demonstrate mastery.
 
@@ -330,7 +382,7 @@ Mastery criteria should be defined when the curriculum requires them.
 
 # Progress States
 
-Progress may be represented using states such as:
+V1 uses exactly one progress vocabulary:
 
 ```text
 NOT_STARTED
@@ -341,9 +393,17 @@ DEMONSTRATED
 MASTERED
 ```
 
-These states are useful descriptors rather than universal rules.
+These states and their definitions are defined once, authoritatively, in `framework/validation/V1_CONTRACT.md` under `# Artifact States` → `## Progress`.
 
-A particular curriculum may define more precise criteria.
+Every V1 document uses this vocabulary. Alternate vocabularies are not permitted.
+
+Progress states are derived from Assessment evidence.
+
+The existence of a lesson, or the completion of a lesson, must not automatically produce a progress state.
+
+Completion of a lesson must not automatically produce `DEMONSTRATED` or `MASTERED`.
+
+A particular curriculum may define more precise criteria, but it must refine these states rather than replace them.
 
 ---
 
