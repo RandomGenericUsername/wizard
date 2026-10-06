@@ -17,6 +17,10 @@ This document describes **how the existing framework components work together**.
 
 It does not replace the contracts that define those components.
 
+This document defines the lifecycle for the **framework layer**.
+
+The lifecycle below is executed inside a Learning Project, which holds the actual artifacts it produces. This repository contains no subject knowledge and no project instance.
+
 ---
 
 # Core Lifecycle
@@ -817,6 +821,10 @@ This prevents role drift.
 
 # End-to-End Example
 
+This example illustrates a **Learning Project** produced from the framework.
+
+The workflow below runs inside that project, not inside this repository.
+
 A learner wants to become capable of designing and operating network infrastructure.
 
 ### 1. Specification
@@ -923,6 +931,9 @@ Version 1 intentionally does not define:
 * advanced learner modeling
 * sophisticated spaced-repetition algorithms
 * additional specialized agents
+* Learning Project scaffolding or generation
+* framework dependency resolution or package management
+* automatic framework synchronization or version upgrades
 
 These may be introduced later when real usage demonstrates a recurring need.
 

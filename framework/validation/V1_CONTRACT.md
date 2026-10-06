@@ -6,6 +6,12 @@ This document defines the authoritative boundaries of **Version 1 (V1)** of the 
 
 It converts the conceptual architecture described in `MASTER.md` into a sufficiently explicit contract that the framework can later be validated programmatically and semantically.
 
+This document defines V1 for the **framework layer**.
+
+It defines how learning systems operate. It does not contain, and must never contain, the knowledge or curriculum of any subject.
+
+Concrete learning programs live in separate **Learning Projects**, as defined in `MASTER.md` section 16.
+
 V1 is considered complete only when:
 
 1. all required V1 artifacts exist
@@ -120,6 +126,30 @@ The following artifacts constitute the V1 document set.
 | V1 Contract            | `framework/validation/V1_CONTRACT.md`         | Defines the V1 boundary and invariants             |
 
 Every artifact listed above is part of V1.
+
+### Framework Artifacts Are Definitions, Not Instances
+
+Every artifact above is a **framework artifact**: a contract, specification, role definition, or rule.
+
+They define what an artifact of that kind is and what it must contain.
+
+They are not subject knowledge, and they are not instances of themselves.
+
+For example:
+
+```text
+Framework Artifact:
+framework/curriculum/CURRICULUM_PROPOSAL.md
+
+Project Artifact:
+network-infrastructure/curriculum/CURRICULUM_PROPOSAL.md
+```
+
+The first defines the Curriculum Proposal artifact contract. The second is an actual Curriculum Proposal for one learner.
+
+The distinction between definition and instance applies to every artifact in the table above.
+
+A Learning Project may instantiate these contracts. V1 defines that relationship only; V1 does not scaffold, generate, or contain any project instance.
 
 ---
 
@@ -740,6 +770,12 @@ The framework must not destroy historical decisions merely because a newer versi
 V1 framework logic must not depend on a specific academic or professional domain.
 
 Subject-specific knowledge belongs in the subject materials, expert reasoning, lessons, or curriculum artifacts.
+
+This applies to repository content as well as to framework logic.
+
+The framework repository must not accumulate subject-specific learning knowledge, and must not contain a concrete Learning Project instance.
+
+Subject knowledge belongs exclusively in Learning Projects.
 
 ---
 

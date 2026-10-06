@@ -313,6 +313,54 @@ into the framework itself unless the rule is genuinely domain-independent.
 
 Subject-specific knowledge belongs in the subject's domain artifacts.
 
+### The Framework Repository Is Not a Learning Project
+
+This repository is the **Learning Framework**. It defines how learning systems operate.
+
+A **Learning Project** is a separate repository containing the actual learning artifacts for one learner and one goal.
+
+Therefore AI must:
+
+* keep this repository free of subject-specific learning knowledge;
+* keep concrete learning programs out of this repository;
+* place all subject knowledge, curriculum, lessons, assessments, evidence, and progress in the Learning Project;
+* treat files under `framework/` as artifact contracts and definitions, never as subject content;
+* never present framework documentation as the authority for a project's curriculum.
+
+A file such as `framework/curriculum/CURRICULUM_PROPOSAL.md` defines what a Curriculum Proposal is. It is not an actual curriculum proposal.
+
+The authoritative Curriculum Contract inside the Learning Project remains the authority for that project's actual learning program.
+
+If a task requires subject knowledge, it belongs in the Learning Project, not in this repository.
+
+### Framework Version Association
+
+A Learning Project records which Learning Framework version it was built from.
+
+AI must not silently upgrade a project to a newer framework version, and must not assume a newer framework version applies to an existing project.
+
+### Project Content Does Not Become Framework Content
+
+Authority does not flow upward from a Learning Project into the Learning Framework.
+
+AI must:
+
+* keep project artifacts as project artifacts;
+* never promote subject-specific knowledge discovered while executing a project into a framework artifact;
+* never treat project curriculum, lessons, assessment results, evidence, or progress as a source of framework content;
+* never promote project content or findings into a framework artifact merely because they are useful, worked, or took significant effort.
+
+Project execution does not authorize framework mutation.
+
+When a project reveals a potential framework defect:
+
+1. surface it as a framework change proposal, not as a direct edit;
+2. apply a domain-independence test — the problem must be a property of the framework, not of one subject or one learner;
+3. reject the finding as a framework concern if it is subject-specific, and keep it inside the project;
+4. if it passes, present it for explicit framework review and human approval before any framework artifact changes.
+
+A finding that is only true inside one project is a project matter and stays there.
+
 ---
 
 ## 17. Explicit Human Decisions

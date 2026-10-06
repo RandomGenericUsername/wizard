@@ -28,6 +28,10 @@ Examples include:
 
 The subject changes. The learning machinery does not.
 
+This repository is the framework layer only. It defines how learning systems operate. It does not contain the knowledge, curriculum, or lessons of any subject.
+
+Each concrete learning program is created as a separate **Learning Project**, as defined in section 16.
+
 ---
 
 # 2. Core Philosophy
@@ -138,6 +142,8 @@ The v1 framework does not attempt to:
 * Optimize for the largest possible number of AI agents.
 * Solve every possible learning modality in v1.
 * Fully automate every interaction with external educational resources.
+* Accumulate subject-specific learning knowledge inside the framework repository.
+* Contain any concrete Learning Project instance.
 
 The framework should prefer a small number of clearly defined components over unnecessary complexity.
 
@@ -773,9 +779,318 @@ This allows the Teacher to be flexible without corrupting the curriculum.
 
 ---
 
-# 16. Framework vs Subject
+# 16. Framework vs Learning Project
 
-The framework itself must remain subject-agnostic.
+This section defines the boundary between the framework repository and the learning projects created from it.
+
+## 16.1 The Two Layers
+
+There are exactly two layers.
+
+### The Learning Framework
+
+This repository is the Learning Framework.
+
+It defines:
+
+* Architecture
+* Roles
+* Agent responsibilities
+* Artifact contracts
+* Workflow
+* Authority boundaries
+* Lifecycle
+* Validation rules
+* AI rules
+* Framework-level conventions
+
+It answers:
+
+> How does a learning system operate?
+
+It must contain **no subject-specific learning knowledge**.
+
+### The Learning Project
+
+A Learning Project is a concrete instance of the framework, created for one learner and one learning goal.
+
+A Learning Project is a separate repository.
+
+It contains the actual:
+
+* Learning Specification
+* Curriculum Proposal
+* Expert Critique
+* Curriculum Review
+* approved Curriculum Contract
+* Lessons
+* Assessments
+* Evidence
+* Progress
+* Project-specific references and supporting material
+
+It answers:
+
+> What is this learner learning?
+
+---
+
+## 16.2 The Separation Rule
+
+The most important architectural rule of this section is:
+
+> The framework defines **how** learning projects operate.
+> A learning project defines **what** the learner learns.
+
+Therefore this repository must never accumulate subject knowledge.
+
+```text
+learning-framework/
+```
+
+must never accumulate:
+
+```text
+networking/
+rust/
+web development/
+trading/
+...
+```
+
+If subject knowledge appears inside this repository, it is a defect, regardless of how useful it is.
+
+The framework repository remains subject-agnostic and reusable across unrelated projects.
+
+---
+
+## 16.3 Terminology
+
+### Learning Framework
+
+The reusable engine and specification that defines how learning systems operate.
+
+### Learning Project
+
+A concrete learning system instantiated from the Learning Framework.
+
+### Framework Artifact
+
+A framework-level contract, specification, role definition, or rule.
+
+### Project Artifact
+
+A concrete artifact produced for a specific learner and project.
+
+The distinction is between a definition and an instance of that definition.
+
+```text
+Framework Artifact:
+framework/curriculum/CURRICULUM_PROPOSAL.md
+
+Project Artifact:
+network-infrastructure/curriculum/CURRICULUM_PROPOSAL.md
+```
+
+The first defines what a Curriculum Proposal is and what it must contain.
+
+The second is an actual curriculum proposal for one learner.
+
+This distinction applies to every framework artifact that has a project-side instance.
+
+Framework-level documents such as `MASTER.md`, `AI_RULES.md`, `WORKFLOW.md`, `LESSON_AUTHOR.md`, `TEACHER.md` and `V1_CONTRACT.md` have no project-side instance. They are framework artifacts by definition and do not correspond to a project artifact.
+
+For example:
+
+```text
+framework/lessons/LESSON.md
+```
+
+defines the Lesson artifact. It is not an actual lesson about networking, Rust, or any other subject.
+
+Framework artifact filenames are intentionally unchanged from their project-side counterparts, because a project artifact is an instance of the corresponding framework artifact contract.
+
+---
+
+## 16.4 Repository Structure
+
+The framework repository is:
+
+```text
+learning-framework/
+├── MASTER.md
+├── AI_RULES.md
+└── framework/
+    ├── specification/
+    ├── curriculum/
+    ├── lessons/
+    ├── teacher/
+    ├── assessment/
+    ├── WORKFLOW.md
+    └── validation/
+```
+
+A Learning Project is separate and may be structured like this:
+
+```text
+network-infrastructure/
+├── PROJECT.md
+├── FRAMEWORK.md
+├── specification/
+│   └── LEARNING_SPECIFICATION.md
+├── curriculum/
+│   ├── CURRICULUM_PROPOSAL.md
+│   ├── EXPERT_CRITIQUE.md
+│   ├── CURRICULUM_REVIEW.md
+│   └── CURRICULUM_CONTRACT.md
+├── lessons/
+├── assessment/
+├── evidence/
+└── progress/
+```
+
+This structure is illustrative.
+
+The framework repository defines the contracts; it does not create, scaffold, or contain project instances in v1.
+
+---
+
+## 16.5 Framework Versioning
+
+A Learning Project must explicitly identify which version of the Learning Framework it is based on.
+
+The framework version is the version declared in this document.
+
+A project records that association minimally, for example:
+
+```yaml
+framework:
+  name: learning-framework
+  version: 1.0
+```
+
+The version string a project records must match the version declared by the framework it was built from.
+
+This section does not fix a versioning scheme for the framework repository itself; it only requires that a project can identify the framework version it was built against.
+
+The important invariant is:
+
+> A Learning Project does not silently adopt changes made to a newer framework version.
+
+If the framework version changes from `1.0` to `1.1`, an existing project remains associated with `1.0` until an explicit upgrade is performed.
+
+A framework update must never implicitly rewrite a project's curriculum, lessons, assessments, evidence, or progress.
+
+v1 defines this architectural relationship only.
+
+v1 does not include:
+
+* Plugin systems
+* Package managers
+* Framework dependency resolution
+* Automatic framework synchronization
+* Project generators
+* CLI commands
+* Databases
+* APIs
+* Remote services
+
+These may become useful later. They are outside v1.
+
+---
+
+## 16.6 Authority Boundary
+
+There are two distinct kinds of authority.
+
+### Framework Authority
+
+The framework repository defines:
+
+* how the system operates
+* role boundaries
+* artifact contracts
+* workflow
+* validation
+* framework-level rules
+
+### Learning Project Authority
+
+The project defines:
+
+* learner intent
+* actual curriculum
+* the approved Curriculum Contract
+* actual lessons
+* assessment results
+* evidence
+* progress
+
+Framework documentation must never appear to be the authority for a subject-specific curriculum.
+
+Framework rules govern **process and structure**. They do not supply curriculum content, and they do not authorize any learning requirement.
+
+The approved Curriculum Contract remains the authority for the actual learning program, as defined in section 14.
+
+A framework artifact is a contract that a project artifact satisfies. It is not the curriculum.
+
+### Project Content Does Not Become Framework Content
+
+Authority does not flow upward from a project into the framework.
+
+A Learning Project must never be promoted back into the Learning Framework merely because its content or findings are useful.
+
+The following are project artifacts and are never framework content:
+
+* Project curriculum
+* Project lessons
+* Project assessment results
+* Project evidence
+* Project progress
+* Subject-specific knowledge discovered while executing a project
+
+Usefulness, effort invested, or proven value in one project is not grounds for promotion.
+
+A project may reveal a problem in the framework. Project experience does not authorize or directly mutate framework artifacts.
+
+The permitted path is:
+
+```text
+Learning Project
+    │
+    │ may reveal a problem
+    ▼
+Framework Change Proposal
+    │
+    │ must demonstrate domain-independence
+    ▼
+Human review / approval
+    │
+    ▼
+Framework Change
+```
+
+The forbidden path is:
+
+```text
+Learning Project
+    │
+    ▼
+Framework
+```
+
+A proposed framework change arising from project experience is valid only when both of the following are true:
+
+1. The identified problem is demonstrably domain-independent, not a property of one subject.
+2. The proposed change is explicitly reviewed and approved as a framework change.
+
+A finding that is only true for one subject is a project matter. It stays in the project.
+
+Framework changes follow the same review and approval discipline as any other architecture change, as described in section 17 and in `AI_RULES.md`.
+
+---
+
+## 16.7 Framework + Project = Learning Environment
 
 The framework defines:
 
@@ -788,7 +1103,7 @@ The framework defines:
 * Assessment methodology
 * Lifecycle rules
 
-A subject defines:
+A learning project supplies the subject:
 
 * Domain knowledge
 * Learning objectives
@@ -803,14 +1118,14 @@ A subject defines:
 Therefore:
 
 ```text
-FRAMEWORK
+LEARNING FRAMEWORK
     +
-SUBJECT
+LEARNING PROJECT
     =
 LEARNING ENVIRONMENT
 ```
 
-The framework should be reusable without modification when a new subject is created.
+The framework should be reusable without modification when a new project is created.
 
 ---
 
